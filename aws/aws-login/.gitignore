@@ -1,7 +1,0 @@
-# IDE
-.idea
-.vs
-.vscode
-
-build/
-cmake-build-debug/

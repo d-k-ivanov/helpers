@@ -8,6 +8,13 @@ __pycache__
 .ropeproject
 venv
 
+# C++
+build/
+cmake-build-debug/
+
+# Wine
+wine32
+
 # Test and Temp
 .tmp
 test
