@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Wrapper to run Ansible in Ad-Hoc mode
+# Plathform: Unix
+#
+# Author: Dmitry Ivanov
+#
+
+echo "=== Welcome to Ansible Ad-Hoc commands runner ==="
+echo 
+
+# Environment
+ANSIBLE_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+REMOTE_USER=$( cat $ANSIBLE_HOME/user 2>/dev/null)
+
+if [ ! $REMOTE_USER ]; then
+	echo ">>> Error: Environment is missing!"
+	echo "Please run $ANSIBLE_HOME/setup to configure your ansible copy"
+	read -n 1 -p "Do you want to run it right now? (y/[Any key to cancel]): " WANT_INIT
+	[ "$WANT_INIT" = "y" ] || exit 1
+	echo
+	$ANSIBLE_HOME/setup
+	echo
+fi
+
+echo "Enter $REMOTE_USER password: "
+# Script
+ansible -i $ANSIBLE_HOME/inventory -u $REMOTE_USER --ask-become-pass $@ 
+
+
+echo
+exit 0 
+

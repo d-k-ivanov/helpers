@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Wrapper to run editor for files encrypted by Ansible-Vault
+# Plathform: Unix
+#
+# Author: Dmitry Ivanov
+#
+
+# Environment
+ANSIBLE_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Script
+ansible-vault edit --vault-password-file=$ANSIBLE_HOME/password $@ 
+

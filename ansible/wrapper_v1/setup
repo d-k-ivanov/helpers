@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# Ansible initialization wrapper
+# Plathform: Unix
+#
+# Author: Dmitry Ivanov
+#
+
+echo "=== Welcome to Ansible installation and customization script ==="
+#echo "    if you don't have Ansible-Vault password. Stop and ask person who have it!"
+echo 
+
+read -n 1 -p "    Do you want to proceed? (y/[Any key to cancel]): " WANT_PROCEED
+[ "$WANT_PROCEED" = "y" ] || exit 1
+echo
+
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+  echo ">>> Error: SSH RSA key is missing"
+	read -n 1 -p "Dou you want to generate one? (y/[Any key to cancel]): " RSA_GEN_YES
+	[ "$RSA_GEN_YES" = "y" ] || exit 1
+	echo "" 1>&2
+	echo
+	echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+		ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
+	echo "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+	echo 
+fi
+ 
+
+# Environment
+ANSIBLE_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+USER_FILE=$ANSIBLE_HOME/user
+VAULT_PASS_FILE=$ANSIBLE_HOME/password
+RSA_KEY=$( cat ~/.ssh/id_rsa.pub )
+
+read -p "Enter your user name for remote servers: " REMOTE_USER
+echo 
+
+#read -p "Enter ansible vault password: " VAULT_PASS
+#echo 
+
+# Debug
+#echo "$USER"
+#echo "$RSA_KEY"
+
+# Script
+touch $USER_FILE
+#touch $VAULT_PASS_FILE
+
+echo "$REMOTE_USER" > $USER_FILE
+#echo "$VAULT_PASS"  > $VAULT_PASS_FILE
+
+# Results:
+echo "Your configuration:"
+echo "----------------------------------------"
+echo "Ansible user:     $REMOTE_USER"
+#echo "Vault password:   $VAULT_PASS"
+echo "SSH RSA key:      $RSA_KEY"
+echo "----------------------------------------"
+echo "Send this to person who have root access to servers"
+
+echo
+exit 0

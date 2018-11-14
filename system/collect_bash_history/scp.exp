@@ -1,0 +1,12 @@
+#!/usr/bin/expect -f
+spawn scp root@"$1":~/.bash_history ./"$2"_"$3"_history.txt
+### ESPECT
+expect {
+-re ".*es.*o.*" {
+exp_send "yes\r"
+exp_continue
+}
+-re ".*sword.*" {
+exp_send "JuSCY1Bq\r"
+}
+}

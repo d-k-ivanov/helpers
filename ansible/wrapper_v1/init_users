@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Wrapper to run Ansible in playbook mode (root)
+# Plathform: Unix
+#
+# Author: Dmitry Ivanov
+#
+
+echo "=== Users Initialization Script  ==="
+echo "    You need ROOT password to run this script"
+echo
+
+read -n 1 -p "Do you want to proceed? (y/[Any key to cancel]): " WANT_PROCEED
+[ "$WANT_PROCEED" = "y" ] || exit 1
+echo
+
+# Environment
+ANSIBLE_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "Enter root password: "
+# Script
+ansible-playbook -i $ANSIBLE_HOME/inventory $ANSIBLE_HOME/root.yml -u root -k $@ 
+
+echo 
+exit 0
+
