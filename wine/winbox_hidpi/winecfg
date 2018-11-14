@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Wrapper for MikroTiK winbox
+# Author: Dmitry Ivanov
+#
+
+# Environment
+WINBOX_LINK="$(/usr/bin/readlink "${BASH_SOURCE[0]}")"
+if [ -z WINBOX_LINK ]; then
+  WINBOX_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+else
+  WINBOX_HOME="$( cd "$( dirname "$WINBOX_LINK" )" && pwd )"
+fi
+
+# Runtime
+WINEARCH=win32 WINEPREFIX=$WINBOX_HOME/wine32 /usr/bin/winecfg
+
+echo
+exit 0
+
+

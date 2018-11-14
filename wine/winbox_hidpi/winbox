@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# Wrapper for MikroTiK winbox
+# Author: Dmitry Ivanov
+
+# Environment
+WINBOX_LINK="$(readlink "${BASH_SOURCE[0]}")"
+if [ -z WINBOX_LINK ]; then
+  WINBOX_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+else
+  WINBOX_HOME="$( cd "$( dirname "$WINBOX_LINK" )" && pwd )"
+fi
+
+# Runtime
+if ! DISPLAY=:1 xset q &>/dev/null; then
+  echo "No X server at \$DISPLAY :1" >&2
+  echo "[`date`] : Starting Xeppyr on DISPLAY \":1\"" >&2
+  Xephyr -once -screen 1880x1060 -terminate 2> /dev/null :1 &
+fi
+
+sleep 2 
+
+winbox_status=`ps -efww | grep -w "winbox.exe" | grep -v grep | grep -v $$ | awk '{ print $2 }'`
+if [ -z "$winbox_status" ]; then
+	echo "[`date`] : Starting winbox"
+	DISPLAY=:1 WINEARCH=win32 WINEPREFIX=$WINBOX_HOME/wine32 wine $WINBOX_HOME/winbox.exe &
+fi
+
+
+if ! nc -z localhost 5909; then
+  echo "[`date`] : Starting x11vc server"
+  x11vnc -localhost -rfbport 5909 -cursor arrow -scale_cursor 1 -display :1 -scale 2:nb -repeat &
+fi
+
+while ! nc -z localhost 5909; do   
+    sleep 0.1 # wait for 1/10 of the second before check again
+done
+echo "[`date`] : x11vnc server started"
+
+vncviewer localhost:5909
+
+echo
+exit 0
+
+
