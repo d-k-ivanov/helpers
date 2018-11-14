@@ -1,0 +1,11 @@
+{
+  "syncToken": "1527135979",
+  "createDate": "2018-05-24-04-26-19",
+  "prefixes": [
+    {
+      "ip_prefix": "18.153.0.0/16",
+      "region": "eu-central-1",
+      "service": "EC2"
+    }
+  ]
+}
