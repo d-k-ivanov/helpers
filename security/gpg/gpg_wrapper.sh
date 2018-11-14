@@ -13,9 +13,7 @@ f_usage() {
 }
 
 declare -a secured_files=(
-  "secrets/ormco-ods-dev-aws.key"
-  "secrets/terraform-dev-key.key"
-  "secrets/terraform-dev-key.txt"
+  "secret_file"
 )
 
 declare -a recipients=()
