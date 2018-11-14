@@ -1,0 +1,21 @@
+------------------------------------------------------------------------------------
+|                                 Users and Groups                                 |
+------------------------------------------------------------------------------------
+| Username   | UID        | Groups                                                 |
+| root       | 0          | root,bin,daemon,sys,adm,disk,wheel,floppy,tape,video   |
+| bin        | 1          | bin,daemon,sys                                         |
+| daemon     | 2          | bin,daemon,adm                                         |
+| adm        | 3          | sys,adm,disk                                           |
+| lp         | 4          | lp                                                     |
+| sync       | 5          | root                                                   |
+| shutdown   | 6          | root                                                   |
+| halt       | 7          | root                                                   |
+| news       | 9          | news                                                   |
+| uucp       | 10         | uucp                                                   |
+| operator   | 11         | root                                                   |
+| portage    | 250        | portage                                                |
+| nobody     | 65534      | nobody                                                 |
+| sshd       | 22         | sshd                                                   |
+| man        | 13         | man                                                    |
+| cron       | 16         | cron,crontab                                           |
+------------------------------------------------------------------------------------
