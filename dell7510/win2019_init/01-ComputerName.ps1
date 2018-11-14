@@ -1,0 +1,1 @@
+Rename-computer –newname “divanov-dev” 

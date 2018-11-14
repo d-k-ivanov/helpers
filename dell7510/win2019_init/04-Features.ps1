@@ -1,0 +1,10 @@
+#!/usr/bin/env pwsh
+Install-WindowsFeature Hyper-V
+Install-WindowsFeature NET-Framework-Features
+Install-WindowsFeature NET-Framework-Core
+Install-WindowsFeature NFS-Client
+Install-WindowsFeature Containers
+Install-WindowsFeature RSAT-Hyper-V-Tools
+Install-WindowsFeature Telnet-Client
+Install-WindowsFeature Wireless-Networking
+Install-WindowsFeature Microsoft-Windows-Subsystem-Linux
