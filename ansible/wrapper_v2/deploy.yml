@@ -1,0 +1,9 @@
+---
+# ---------------------------- Basic Setup -----------------------------------------------------------------------------
+- name: Setup Base Host
+  hosts: base
+  tags: ["base"]
+  roles:
+    - name: Base
+      role: base
+      tags: ["base"]

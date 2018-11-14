@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Ansible initialization wrapper
+# Platform: Unix
+#
+# Author:   Dmitriy Ivanov
+#
+
+echo "=== Welcome to Ansible installation and customization script ==="
+echo "    if you don't have Ansible-Vault password. Stop and ask your infrasructure administrator!"
+echo
+
+read -n 1 -p "    Do you want to proceed? (y/[Any key to cancel]): " WANT_PROCEED
+[ "$WANT_PROCEED" = "y" ] || exit 1
+echo
+
+# Environment
+ANSIBLE_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+VAULT_PASS_FILE=${ANSIBLE_HOME}/ansible_password
+
+read -p "Enter ansible vault password: " VAULT_PASS
+echo
+
+# Script
+touch $VAULT_PASS_FILE
+echo "$VAULT_PASS"  > $VAULT_PASS_FILE
+
+echo
+exit 0
