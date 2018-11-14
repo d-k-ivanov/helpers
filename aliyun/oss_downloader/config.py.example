@@ -1,0 +1,17 @@
+ali_access_key_id='your place Aliyun key ID here'
+ali_secret_access_key=='place your AWS secret key here'
+
+oss_endpoints = {
+    "name_of_your_bucket": "http://endpoint",
+    "name_of_your_bucket": "http://endpoint"
+}
+
+# Example:
+# oss_endpoints = {
+#     "di-test1-bucker-001": "http://oss-cn-shenzhen.aliyuncs.com",
+#     "di-test1-bucker-002": "http://oss-cn-shenzhen.aliyuncs.com"
+#     "di-test1-bucker-003": "http://oss-cn-beijing.aliyuncs.com"
+#     "di-test1-bucker-004": "http://oss-cn-beijing.aliyuncs.com"
+# }
+
+
