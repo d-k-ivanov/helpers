@@ -1,0 +1,171 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import sys
+import pymongo
+import socket
+from pprint import pprint
+import datetime
+
+
+def get_mongo_db(uri=None, address=None, port=None, database=None):
+    if uri:
+        uriDict = pymongo.uri_parser.parse_uri(uri, default_port=27017, validate=True, warn=False)
+        print(uriDict)
+        nodes = uriDict['nodelist']
+        if not database:
+            db = uriDict['database']
+            print("Using database: " + str(db))
+        else:
+            db = database
+            print("Using database: " + str(db))
+    else:
+        if not address:
+            address = 'localhost'
+        if not port:
+            port = 27017
+        nodes = [(address, port)]
+        db = database
+
+    for node in nodes:
+        print(node)
+        s = socket.socket()
+        s.settimeout(5)
+        try:
+            s.connect(node)
+        except socket.error as e:
+            print("Connection to {} on port {} failed: {} \nExited...".format(node[0], node[1], e))
+            sys.exit(2)
+        finally:
+            s.close()
+
+    if uri:
+        client = pymongo.MongoClient(uri)
+    else:
+        client = pymongo.MongoClient(node[0], node[1])
+
+    if not db:
+        print('Database name undefined\nPlease run ' + __file__ + ' -db DATABASE_NAME \nExited...')
+        sys.exit(2)
+
+    if db in client.database_names():
+        return client[db]
+    else:
+        print('Wrong DB name! \nExited...')
+        sys.exit(2)
+
+
+def print_all_dates(db, collection, field):
+    print('Debug: 1')
+    if collection in db.collection_names():
+        coll = db[collection]
+        cursor = coll.find({field: {'$lt': datetime.datetime(9999, 12, 31, 23, 59, 59), '$gt': datetime.datetime(1, 1, 1, 1, 1, 1)}}, {'_id': 0, field: 1})
+        for document in cursor:
+            if field not in document.keys():
+                print('Wrong document field name!\nExited...')
+                sys.exit(3)
+            print(document[field])
+        print("Number of records: " + str(coll.count()))
+        cursor.close()
+    else:
+        print("Collection {} does not exist".format(collection))
+        sys.exit(3)
+
+
+def print_all_dates_cursor(db, collection, field):
+    print('Debug: 2')
+    if collection in db.collection_names():
+        coll = db[collection]
+        cursor = coll.find({field: {'$lt': datetime.datetime(9999, 12, 31, 23, 59, 59), '$gt': datetime.datetime(1, 1, 1, 1, 1, 1)}}, {'_id': 0, field: 1})
+        for document in cursor:
+            if field not in document.keys():
+                print('Wrong document field name!\nExited...')
+                sys.exit(4)
+            pprint(document)
+        print("Number of records: " + str(coll.count()))
+        cursor.close()
+    else:
+        print("Collection {} does not exist".format(collection))
+        sys.exit(4)
+
+
+def print_normalized_dates(db, collection, field):
+    print('Debug: 3')
+    if collection in db.collection_names():
+        coll = db[collection]
+        cursor = coll.find({field: {'$lt': datetime.datetime(9999, 12, 31, 23, 59, 59), '$gt': datetime.datetime(1, 1, 1, 1, 1, 1)}}, snapshot=True)
+        for document in cursor:
+            if field not in document.keys():
+                print('Wrong document field name!\nExited...')
+                sys.exit(5)
+            date = document[field]
+            if date.hour >= 18:
+                date += datetime.timedelta(days=1)
+            date = datetime.datetime(date.year, date.month, date.day)
+            print(date)
+        cursor.close()
+    else:
+        print("Collection {} does not exist".format(collection))
+        sys.exit(5)
+
+
+def normalize_dates(db, collection, field):
+    if collection in db.collection_names():
+        coll = db[collection]
+        cursor = coll.find({field: {'$lt': datetime.datetime(9999, 12, 31, 23, 59, 59), '$gt': datetime.datetime(1, 1, 1, 1, 1, 1)}}, snapshot=True)
+        counter = 0
+        for document in cursor:
+            if field not in document.keys():
+                print('Wrong document field name!\nExited...')
+                sys.exit(6)
+            date = document[field]
+            if date.hour >= 18:
+                date += datetime.timedelta(days=1)
+            date = datetime.datetime(date.year, date.month, date.day)
+            result = coll.update_one({'_id': document['_id']}, {'$set': {field: date}})
+            counter += result.modified_count
+        print("Number of updated entries: %s" % (counter))
+        cursor.close()
+    else:
+        print("Collection {} does not exist".format(collection))
+        sys.exit(6)
+
+
+if __name__ == '__main__':
+    print('Date normalization script for MongoDB')
+
+    import argparse
+    # Options
+    parser = argparse.ArgumentParser(description='Date normalization script for MongoDB', formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument("-u", dest="uri", help="MongoDB uri string (default: mongodb://localhost:27017/)", metavar="MONGO_URI")
+    parser.add_argument("-a", dest="address", help="Mongo server address (default: localhost)", metavar="ADDRESS")
+    parser.add_argument("-p", dest="port", type=int, help="Mongo server port (default: 27017)", metavar="PORT")
+    parser.add_argument("-d", dest="database", help="Database name", metavar="DATABASE_NAME")
+    parser.add_argument("-c", dest="collection", help="Collection name", metavar="COLLECTION_NAME")
+    parser.add_argument("-f", dest="field", help="Field name", metavar="FIELD_NAME")
+    parser.add_argument("--debug", dest="DNUM", type=int, metavar="DNUM", help='''DEBUG:  1:Print all dates in iso date format
+        2:Print all dates in mongo date format
+        3:Print normalized dates in iso date format
+        Default: run date normalization
+        ''')
+    args = parser.parse_args()
+
+    if not args.collection and not args.field:
+        print("Hello, this is date normalization script for MongoDB")
+        print("It takes certain field in each document in certain collection and if time greater than 18 than increadse day with 00:00:00")
+        print(" Usage:")
+        print("\t" + str(__file__) + " -c collection_name -f field_name")
+        sys.exit(1)
+    db = get_mongo_db(args.uri, args.address, args.port, args.database)
+    debug = args.DNUM
+    if debug == 1:
+        print_all_dates(db, args.collection, args.field)
+    elif debug == 2:
+        print_all_dates_cursor(db, args.collection, args.field)
+    elif debug == 3:
+        print_normalized_dates(db, args.collection, args.field)
+    else:
+        normalize_dates(db, args.collection, args.field)
+
+    db.close
+    sys.exit(0)
