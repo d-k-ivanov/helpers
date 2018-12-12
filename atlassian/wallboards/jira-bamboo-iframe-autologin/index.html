@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta http-equiv="refresh" content="3600">
+    <title>TV PANEL 1</title>
+    <link rel='stylesheet' href='style.css' type='text/css' media='screen' />
+  </head>
+  <body>
+    <div class="flexbox">
+      <div class="left">
+          <iframe width="100%" height="100%" frameborder="0" scrolling="no" src="https://{{ ORGANIZATION }}.atlassian.net/plugins/servlet/Wallboard/?dashboardId={{ DASHBOARD_ID }}"></iframe>
+      </div>
+	    <div class="right">
+        <form id="login" target="frame" method="post" action="https://bamboo.your-company.com/userlogin.action">
+          <input type="hidden" name="os_username" value="{{ BAMBOO_USERNAME }}" />
+          <input type="hidden" name="os_password" value="{{ BAMBOO_PASSWORD }}" />
+        </form>
+
+        <iframe width="100%" height="100%" frameborder="0" scrolling="no" id="frame2" name="frame"></iframe>
+
+        <script type="text/javascript">
+          // submit the form into iframe for login into remote site
+          document.getElementById('login').submit();
+
+          // once you're logged in, change the source url (if needed)
+          var iframe = document.getElementById('frame2');
+          iframe.onload = function() {
+              if (iframe.src != "https://bamboo.your-company.com/telemetry.action") {
+                  iframe.src = "https://bamboo.your-company.comtelemetry.action";
+              }
+          }
+      </script>
+      </div>
+    </div>
+  </body>
+</html>
