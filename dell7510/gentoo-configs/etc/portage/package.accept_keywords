@@ -1,0 +1,11 @@
+x11-wm/awesome                          ~amd64
+app-editors/vscode                      ~amd64
+net-im/slack-bin                        ~amd64
+media-fonts/exljbris-free               ~amd64
+media-fonts/fantasque-sans-mono         ~amd64
+media-fonts/hermit                      ~amd64
+media-fonts/inconsolata-lgc             ~amd64
+net-im/telegram-desktop-bin             ~amd64
+dev-lang/lazarus                        ~amd64
+app-misc/doublecmd                      ~amd64
+dev-lang/fpc                            ~amd64
