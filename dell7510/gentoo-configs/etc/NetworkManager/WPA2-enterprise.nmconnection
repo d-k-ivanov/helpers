@@ -1,0 +1,25 @@
+[connection]
+id=[Connection Name]
+uuid=[Unique ID]
+type=wifi
+
+[wifi]
+mode=infrastructure
+ssid=[SSID]
+security=802-11-wireless-security
+
+[wifi-security]
+key-mgmt=wpa-eap
+
+[802-1x]
+eap=peap
+identity=[Username]
+password=[Password]
+phase2-auth=mschapv2
+
+[ipv4]
+method=auto
+
+[ipv6]
+method=auto
+

@@ -1,0 +1,6 @@
+# created by eselect-repo
+
+[seden]
+location = /var/db/repos/seden
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/seden.git
