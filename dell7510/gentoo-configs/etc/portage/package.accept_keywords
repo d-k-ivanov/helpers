@@ -10,9 +10,11 @@ media-fonts/exljbris-free               ~amd64
 media-fonts/fantasque-sans-mono         ~amd64
 media-fonts/hermit                      ~amd64
 media-fonts/inconsolata-lgc             ~amd64
+net-im/skypeforlinux                    ~amd64
 net-im/slack-bin                        ~amd64
 net-im/telegram-desktop-bin             ~amd64
 net-misc/dropbox                        ~amd64
+net-wireless/blueman                    ~amd64
 sys-apps/inxi                           ~amd64
 sys-power/acpi_call                     ~amd64
 x11-drivers/nvidia-drivers              ~amd64

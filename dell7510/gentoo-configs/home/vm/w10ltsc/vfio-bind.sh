@@ -7,3 +7,4 @@ if [ -e /sys/bus/pci/devices/0000:01:00.0/driver ]; then
 fi
 echo $vendor $device > /sys/bus/pci/drivers/vfio-pci/new_id
 
+echo "vfio-pci" > /sys/bus/pci/devices/0000\:01\:00.0/driver_override
