@@ -1,0 +1,8 @@
+click
+dnspython3
+mysql-connector-python
+openpyxl
+pandas
+python-dotenv
+pytz
+xlsxwriter

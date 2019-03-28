@@ -7,7 +7,7 @@ import sys
 import oss2
 import time
 import hashlib
-import config
+import secrets
 import threading
 
 
@@ -23,8 +23,8 @@ def md5Checksum(filePath):
 
 
 def download(path, bucket, key, dest):
-    endpoint = config.oss_endpoints[bucket]
-    auth = oss2.Auth(config.ali_access_key_id, config.ali_secret_access_key)
+    endpoint = secrets.oss_endpoints[bucket]
+    auth = oss2.Auth(secrets.ali_access_key_id, secrets.ali_secret_access_key)
 
     dir = os.path.abspath(dest + path + "/")
     try:

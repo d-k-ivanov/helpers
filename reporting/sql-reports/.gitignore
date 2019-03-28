@@ -1,0 +1,16 @@
+# IDE
+.idea
+.vs
+.vscode
+
+# Python
+venv
+__pycache__
+*.egg*
+*.pyc
+dist
+
+# Private
+.env
+secrets.ps1
+sql_reports.xlsx

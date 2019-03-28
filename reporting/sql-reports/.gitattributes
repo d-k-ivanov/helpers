@@ -1,0 +1,6 @@
+# Perform LF normalization
+* text eol=lf
+
+*.png binary
+*.woff binary
+
