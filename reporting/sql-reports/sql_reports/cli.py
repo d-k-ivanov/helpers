@@ -33,9 +33,9 @@ def cli_show_config():
 
 
 # ---------------------- Listing ---------------------
-@cli.command('lead-time-report')
+@cli.command('sql-report')
 @click.help_option('-h', '--help')
-def lead_time_report():
+def sql_report():
     ''' Export SQL Report '''
     sql_reports.reports.sql_report()
 

@@ -11,7 +11,7 @@ import tempfile
 
 from datetime import datetime
 
-from sql_reports.formats import lead_time_report_message
+from sql_reports.formats import sql_report_message
 from sql_reports.notifications import send_message
 from sql_reports.config import CONFIG
 
@@ -20,7 +20,7 @@ def sql_report():
     now = datetime.utcnow().replace(tzinfo=pytz.utc)
     date = now.astimezone(pytz.timezone('US/Pacific'))
     date_format = '%Y-%m-%d'
-    report_title = 'LeadTime ' + date.strftime(date_format)
+    report_title = 'SQL Report ' + date.strftime(date_format)
 
     db_config = {
         'user': CONFIG['db_user'],
@@ -67,7 +67,7 @@ def sql_report():
 
     message = {}
     message['subj'] = '[sql-reports] ' + report_title
-    message['body'] = lead_time_report_message.format(date=date.strftime(date_format))
+    message['body'] = sql_report_message.format(date=date.strftime(date_format))
     message['path'] = report_file
     for recipient in CONFIG['email_to'].split(';'):
         send_message(message, recipient)
