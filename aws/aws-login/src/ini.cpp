@@ -4,7 +4,6 @@
 *       File    :  ini.cpp
 *       Created :  11/11/2018 4:38:01 AM +0300
 *       Author  :  Dmitriy Ivanov
-*       Company :  Ormco
 * ---------------------------------------------------------------------------
 *  Copyright (c) 2018 Dmitriy Ivanov
 *
