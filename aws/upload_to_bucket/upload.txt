@@ -1,4 +1,4 @@
-upload.ps1 - script for uploading archived Insignia cases to AWS S3 Bucket in Ormco Insignia Production account.
+upload.ps1 - script for uploading files to AWS S3 Bucket.
 
 Requirements:
     - Powershell 4+
