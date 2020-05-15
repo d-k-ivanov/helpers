@@ -15,7 +15,7 @@ def check_server_port(address, port):
         return False
 
 if __name__ == '__main__':
-    import argparse    
+    import argparse
     parser = argparse.ArgumentParser(description='Script for checking tcp port.')
     parser.add_argument('-a', '--address', dest='address', default='localhost', help='IP addres for check', metavar='ADDRESS')
     parser.add_argument('-p', '--port', dest='port', type=int, default=80, help='Port for check', metavar='ADDRESS')
