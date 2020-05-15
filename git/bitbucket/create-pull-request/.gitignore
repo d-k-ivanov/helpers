@@ -1,0 +1,9 @@
+# IDE
+.vs/
+.idea/
+.vscode/
+
+__pycache__/
+
+# Secrets
+.env
