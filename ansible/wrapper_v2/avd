@@ -3,7 +3,7 @@
 # Wrapper to decrypt all vault encrypted files
 # Platform: Unix
 #
-# Author:   Dmitriy Ivanov
+# Author:   Dmitry Ivanov
 #
 
 # Environment

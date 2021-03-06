@@ -1,7 +1,7 @@
 #!/bin/bash
 # Encrypt or decrypt protected files.
 # Platform: Unix
-# Author:   Dmitriy Ivanov
+# Author:   Dmitry Ivanov
 
 f_usage() {
   local Y="\033[0;33m"    # yellow

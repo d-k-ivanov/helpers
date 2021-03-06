@@ -17,7 +17,7 @@ MAIN_PACKAGE = 'sql_reports'
 DESCRIPTION = 'Generate SQL reports'
 URL = 'https://github.com/d-k-ivanov/helpers/tree/master/reporting/sql-reports/'
 EMAIL = 'd.k.ivanov@live.com'
-AUTHOR = 'Dmitriy Ivanov'
+AUTHOR = 'Dmitry Ivanov'
 REQUIRES_PYTHON = '>=3.6.0'
 VERSION = None
 

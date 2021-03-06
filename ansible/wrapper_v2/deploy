@@ -3,7 +3,7 @@
 # Wrapper to run Ansible in playbook mode
 # Platform: Unix
 #
-# Author:   Dmitriy Ivanov
+# Author:   Dmitry Ivanov
 #
 
 echo "=== Welcome to Ansible runner ==="

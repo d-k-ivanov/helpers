@@ -3,7 +3,7 @@
 # Ansible initialization wrapper
 # Platform: Unix
 #
-# Author:   Dmitriy Ivanov
+# Author:   Dmitry Ivanov
 #
 
 echo "=== Welcome to Ansible installation and customization script ==="

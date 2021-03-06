@@ -3,7 +3,7 @@
 # Wrapper to Ansible-Vault
 # Platform: Unix
 #
-# Author:   Dmitriy Ivanov
+# Author:   Dmitry Ivanov
 #
 
 # Environment

@@ -3,9 +3,9 @@
 *       Project :  aws-login
 *       File    :  cli.cpp
 *       Created :  11/7/2018 11:29:51 PM +0300
-*       Author  :  Dmitriy Ivanov
+*       Author  :  Dmitry Ivanov
 * ---------------------------------------------------------------------------
-*  Copyright (c) 2018 Dmitriy Ivanov
+*  Copyright (c) 2018 Dmitry Ivanov
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.

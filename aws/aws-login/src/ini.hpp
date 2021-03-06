@@ -3,9 +3,9 @@
 *       Project :  aws-login
 *       File    :  ini.hpp
 *       Created :  11/11/2018 2:10:56 AM +0300
-*       Author  :  Dmitriy Ivanov
+*       Author  :  Dmitry Ivanov
 * ---------------------------------------------------------------------------
-*  Copyright (c) 2018 Dmitriy Ivanov
+*  Copyright (c) 2018 Dmitry Ivanov
 *
 *  Licensed under the Apache License, Version 2.0 (the "License");
 *  you may not use this file except in compliance with the License.

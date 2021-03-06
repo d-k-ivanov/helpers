@@ -18,7 +18,7 @@
   None
 
 .NOTES
-  Written by: Dmitriy Ivanov
+  Written by: Dmitry Ivanov
 #>
 param (
   [Parameter(Mandatory=$true)]
