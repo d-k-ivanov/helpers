@@ -1,0 +1,1 @@
+javascript:void%20function(){var%20a=window.location,b=a.href.substring(a.href.lastIndexOf(%22/%22)+1),c=b.split(%22.%22).slice(0,-1).join(%22.%22),d=a.protocol+%22//%22+a.host+%22/browse/%22+c,e=window.open(d,%22_blank%22)}();
