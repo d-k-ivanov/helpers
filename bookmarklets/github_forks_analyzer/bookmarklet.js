@@ -1,0 +1,1 @@
+javascript:!function(){if(title=document.title,title)if(thing=title.split(/(GitHub\s-\s)*([^:]*)/)[2],thing){var t="https://d-k-ivanov.github.io/gh-forks-analyzer.html#"+thing;window.open(t)}else window.alert("Not a valid GitHub page")}();
