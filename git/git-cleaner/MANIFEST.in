@@ -1,0 +1,2 @@
+include *.rst
+recursive-include git_cleaner *.py

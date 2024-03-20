@@ -1,0 +1,16 @@
+.idea
+.vscode
+git_cleaner/__pycache__/
+scripts
+venv
+.dockerignore
+.editorconfig
+.env
+build.ps1
+build.sh
+Dockerfile
+MAINTAINERS
+MANIFEST.in
+README.rst
+requirements-dev.txt
+version

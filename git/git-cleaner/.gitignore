@@ -1,0 +1,15 @@
+# IDE
+.idea
+.vs
+.vscode
+
+# Python
+venv
+__pycache__
+*.egg*
+*.pyc
+build
+dist
+
+# Private
+.env

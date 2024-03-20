@@ -1,0 +1,8 @@
+click
+markdown
+oauthlib
+python-dotenv
+pytz
+requests
+requests_oauthlib
+urllib3
